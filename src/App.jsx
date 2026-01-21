@@ -7,7 +7,7 @@ function App() {
         name: 'Misha',
         description: '',
         gender: '',
-        refresh: '',
+        refresh: '3',
         currentPoints: '',
         aspects: {
             highConcept: '',
@@ -35,16 +35,24 @@ function App() {
         }
     });
 
+    function handleChange(event) {
+        let newCharacterData = {...characterData};
+        newCharacterData[event.target.name] = event.target.value;
+
+        setCharacterData(newCharacterData);
+    }
+
 
     return (
         <div className={'main-container'}>
             <div className={'input-panel'}>
                 <h1>Input Panel</h1>
-                <InputPanel onChange={(event) => setCharacterData(event.target.value)}/>
+                {/*<InputPanel handlerProp={handleChange}/>*/}
+                <InputPanel onChange={handleChange}/>
+
             </div>
             <div className={'display-panel'}>
                 <h1>Display Panel</h1>
-
                 <DisplayPanel characterData={characterData}/>
             </div>
         </div>
@@ -54,11 +62,12 @@ function App() {
 export default App
 
 // TODO Input компоненты должны модифицировать characterData
-function InputPanel() {
+function InputPanel({onChange}) {
+
     return (
         <>
-            <IdInputBox/>
-            <AspectsInputBox/>
+            <IdInputBox onChange={onChange}/>
+            <AspectsInputBox onChange={onChange}/>
             <ApproachesInputBox/>
             <StuntsInputBox/>
             <StressInputBox/>
@@ -67,28 +76,35 @@ function InputPanel() {
     )
 }
 
-function IdInputBox() {
+function IdInputBox({onChange}) {
+    // let handler = handlerProp.handlerProp.handlerProp
+
     return (
         <div className={"id-input-box"}>
             <div className={"id-input-box-header input-header"}>ID</div>
-            <input type="text" id="name" name="name" placeholder={"Character Name"}/>
-            <input type="text" id="description" name="description" placeholder={"Character Description"}/>
-            <input type="text" id="refresh" name="refresh" placeholder={"Refresh"}/>
-            <input type="text" id="currentPoints" name="currentPoints" placeholder={"Current Points"}/>
-            <input type="text" id="gender" name="gender" placeholder={"Gender"}/>
+            <input type="text" onChange={onChange} id="name" name="name" placeholder={"Character Name"}/>
+            <input type="text" onChange={onChange} id="description" name="description"
+                   placeholder={"Character Description"}/>
+            <input type="text" onChange={onChange} id="refresh" name="refresh" placeholder={"Refresh"}/>
+            <input type="text" onChange={onChange} id="currentPoints" name="currentPoints"
+                   placeholder={"Current Points"}/>
+            <input type="text" onChange={onChange} id="gender" name="gender" placeholder={"Gender"}/>
         </div>
     )
 }
 
-function AspectsInputBox() {
+function AspectsInputBox({onChange}) {
+    // TODO Надо чтобы он нестил в аспекты.
+    // Сейчас он просто создаёт новый объект. Добавить if clause для аспектов, т.к. они занестины в хендлер?
     return (
         <div className={"aspects-input-box"}>
             <div className={"aspects-input-box-header input-header"}>Aspects</div>
-            <input type="text" id="high-concept-aspect" name="high-concept-aspect" placeholder="High Concept"/>
-            <input type="text" id="trouble-aspect" name="trouble-aspect" placeholder="Trouble"/>
-            <input type="text" id="additional-aspect1" name="trouble-aspect"/>
-            <input type="text" id="additional-aspect2" name="additional-aspect2"/>
-            <input type="text" id="additional-aspect3" name="additional-aspect3"/>
+            <input type="text" onChange={onChange} id="high-concept-aspect" name="high-concept-aspect"
+                   placeholder="High Concept"/>
+            <input type="text" onChange={onChange} id="trouble-aspect" name="trouble-aspect" placeholder="Trouble"/>
+            <input type="text" onChange={onChange} id="additional-aspect1" name="trouble-aspect"/>
+            <input type="text" onChange={onChange} id="additional-aspect2" name="additional-aspect2"/>
+            <input type="text" onChange={onChange} id="additional-aspect3" name="additional-aspect3"/>
         </div>
     )
 
@@ -98,19 +114,19 @@ function ApproachesInputBox() {
     return (
         <div className={"approaches-input-box"}>
             <div className={"approaches-input-box-header input-header"}>Approaches</div>
-            <label >Careful
+            <label>Careful
                 <input type="text" id="careful-approach" name="careful-approach"/>
             </label>
-            <label >Clever
+            <label>Clever
                 <input type="text" id="clever-approach" name="clever-approach"/>
             </label>
-            <label >Flashy
+            <label>Flashy
                 <input type="text" id="flashy-approach" name="flashy-approach"/>
             </label>
-            <label >Forceful
+            <label>Forceful
                 <input type="text" id="forceful-approach" name="forceful-approach"/>
             </label>
-            <label >Quick
+            <label>Quick
                 <input type="text" id="quick-approach" name="quick-approach"/>
             </label>
             <label>Sneaky
@@ -119,9 +135,6 @@ function ApproachesInputBox() {
         </div>
     )
 }
-
-
-
 
 function StuntsInputBox() {
     return <div className={"stunts-input-box"}>
@@ -143,13 +156,13 @@ function StressInputBox() {
 function ConsequenceInputBox() {
     return <div className={"consequence-input-box"}>
         <div className={"consequence-input-box-header input-header"}>Consequences</div>
-        <label >2
+        <label>2
             <input type="text" id="consequence-input2" name="consequence-input2" placeholder="Mild"/>
         </label>
-        <label >4
+        <label>4
             <input type="text" id="consequence-input4" name="consequence-input4" placeholder="Moderate"/>
         </label>
-        <label >6
+        <label>6
             <input type="text" id="consequence-input6" name="consequence-input6" placeholder="Severe"/>
         </label>
     </div>
@@ -158,6 +171,6 @@ function ConsequenceInputBox() {
 
 //  TODO сделать вывод инпута
 function DisplayPanel({characterData}) {
-    return (<div>My name is {JSON.stringify(characterData)}</div>
+    return (<div>Full json {JSON.stringify(characterData)}</div>
     )
 }
