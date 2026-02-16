@@ -2,42 +2,62 @@ import {useState} from 'react'
 import './App.css'
 
 function App() {
+    // TODO убрать extras?
     const [characterData, setCharacterData] = useState({
         name: 'Misha',
-        description: '',
-        gender: '',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur consequatur dolorem doloribus, eius hic mollitia quasi! Aliquam amet consectetur eius eos id incidunt nesciunt pariatur quas repellendus, vero voluptatem voluptatibus!',
+        gender: 'Male',
         refresh: '3',
-        currentPoints: '',
+        currentPoints: '3',
         aspects: {
-            highConcept: '',
-            trouble: '',
-            aspect1: '',
-            aspect2: '',
-            aspect3: ''
+            highConcept: 'Superhero',
+            trouble: 'Too smart',
+            aspect1: 'Anya wife',
+            aspect2: 'Flat owner',
+            aspect3: 'Greatest Cook'
         },
         approaches: {
-            careful: '',      // +5
-            clever: '',       // +4
-            flashy: '',        // +3
-            forceful: '',        // +2
-            quick: '',      // +1
-            sneaky: ''
+            careful: '3',      // +5
+            clever: '5',       // +4
+            flashy: '2',        // +3
+            forceful: '1',        // +2
+            quick: '1',      // +1
+            sneaky: '1'
         },
-        extras: '',
-        stunts: '',
-        stress: [false, false, false],
+        stunts: '        <>\n' +
+            '            <div className={\'main-container\'}>\n' +
+            '                <div className={\'input-panel\'}>\n' +
+            '                    <h1>Input Panel</h1>\n' +
+            '                    <InputPanel onChange={handleChange}/>\n' +
+            '\n' +
+            '                </div>\n' +
+            '                <div className={\'display-panel\'}>\n' +
+            '                    <h1>Display Panel</h1>\n' +
+            '                    <DisplayPanel characterData={characterData}/>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '       ## Me\n' +
+            'Why does my stunt print output does not make it print new lines, instead all text is squished? I have \\n special character for a new line\n' +
+            '\n' +
+            '## AI Assistant\n' +
+            'In HTML (and therefore in React), newline characters (\\n) inside a normal element like <div> are treated as whitespace and collapsed. So your "line1\\nline2" renders like "line1 line2".\n' +
+            'To make the browser render those newlines, you have two common options:\n' +
+            '  pre-wrap     <PrintableSheet characterData={characterData}/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores pariatur soluta ullam! Commodi eligendi exercitationem fugit in iure? Ex fugiat iusto laborum nostrum officiis praesentium quod reprehenderit ullam voluptatem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut corporis cupiditate dolorem ducimus eius fugit, id illum ipsum iste laborum, minus molestiae nesciunt nihil praesentium quis recusandae totam!</>\n' +
+            ' pre-wrap     <PrintableSheet characterData={characterData}/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores pariatur soluta ullam! Commodi eligendi exercitationem fugit in iure? Ex fugiat iusto laborum nostrum officiis praesentium quod reprehenderit ullam voluptatem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut corporis cupiditate dolorem ducimus eius fugit, id illum ipsum iste laborum, minus molestiae nesciunt nihil praesentium quis recusandae totam!</>\n' +
+            ' pre-wrap     <PrintableSheet characterData={characterData}/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores pariatur soluta ullam! Commodi eligendi exercitationem fugit in iure? Ex fugiat iusto laborum nostrum officiis praesentium quod reprehenderit ullam voluptatem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut corporis cupiditate dolorem ducimus eius fugit, id illum ipsum iste laborum, minus molestiae nesciunt nihil praesentium quis recusandae totam!</>\n' +
+            'pre-wrap     <PrintableSheet characterData={characterData}/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores pariatur soluta ullam! Commodi eligendi exercitationem fugit in iure? Ex fugiat iusto laborum nostrum officiis praesentium quod reprehenderit ullam voluptatem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut corporis cupiditate dolorem ducimus eius fugit, id illum ipsum iste laborum, minus molestiae nesciunt nihil praesentium quis recusandae totam!</>\n',
+        stress: [true, false, false],
 
         consequences: {
-            mild2: '',
-            moderate4: '',
-            severe6: ''
+            mild2: 'Подбит',
+            moderate4: 'Голоден',
+            severe6: 'Болит спина'
         }
     });
 
     function handleChange(event) {
 
         let newCharacterData = {...characterData};
-        // TODO consequences and stunt input\state as text with new lines
         if (event.target.dataset["aspect"]) {
             newCharacterData.aspects[event.target.name] = event.target.value;
 
@@ -61,23 +81,24 @@ function App() {
 
 
     return (
-        <div className={'main-container'}>
-            <div className={'input-panel'}>
-                <h1>Input Panel</h1>
-                <InputPanel onChange={handleChange}/>
+        <>
+            <div className={'main-container'}>
+                <div className={'input-panel'}>
+                    <h1>Input Panel</h1>
+                    <InputPanel onChange={handleChange}/>
 
+                </div>
+                <div className={'display-panel'}>
+                    <h1>Display Panel</h1>
+                    <DisplayPanel characterData={characterData}/>
+                </div>
             </div>
-            <div className={'display-panel'}>
-                <h1>Display Panel</h1>
-                <DisplayPanel characterData={characterData}/>
-            </div>
-        </div>
+            <PrintableSheet characterData={characterData}/></>
     )
 }
 
 export default App
 
-// TODO Input компоненты должны модифицировать characterData
 function InputPanel({onChange}) {
 
     return (
@@ -90,6 +111,7 @@ function InputPanel({onChange}) {
                 <StressInputBox onChange={onChange}/>
                 <ConsequenceInputBox onChange={onChange}/>
             </form>
+
         </>
     )
 }
@@ -153,14 +175,12 @@ function ApproachesInputBox({onChange}) {
 }
 
 function StuntsInputBox({onChange}) {
-    // TODO stunt input bot behave like a reddit text input box.
-    //  Currently can't make a new line to write like example:
-    // 1. Weaponized incompetence
-    // 2. Halfling luck
     return <div className={"stunts-input-box"}>
         <div className={"stunts-input-box-header input-header"}>Stunts</div>
-        <textarea onChange={onChange} rows={4} name="stunts" placeholder={"1. Dangerously incompetent\n2. Halfling luck"}/>
+        <textarea onChange={onChange} rows={4} name="stunts"
+                  placeholder={"1. Dangerously incompetent\n2. Halfling luck"}/>
     </div>
+
 }
 
 function StressInputBox({onChange}) {
@@ -174,7 +194,6 @@ function StressInputBox({onChange}) {
 
 
 function ConsequenceInputBox({onChange}) {
-    // TODO
     return <div className={"consequence-input-box"}>
         <div className={"consequence-input-box-header input-header"}>Consequences</div>
         <label>2
@@ -194,7 +213,42 @@ function ConsequenceInputBox({onChange}) {
 
 
 //  TODO сделать вывод инпута
+// TODO how to make printing output for A4 page correctly?
 function DisplayPanel({characterData}) {
     return (<div>Full json {JSON.stringify(characterData)}</div>
     )
+}
+
+function PrintableSheet({characterData}) {
+//TODO character output in the png boxes
+
+
+    let approaches = Object.keys(characterData.approaches)
+
+    return <div className={"FAE-print"}>
+        <div className={"name-print print-output"}> {characterData.name} </div>
+        <div className={"description-print print-output"}> {characterData.description}</div>
+        <div className={"pronouns-print print-output"}> {characterData.gender}</div>
+        <div className="refresh-print print-output">{characterData.refresh}</div>
+        <div className="current-points-print print-output">{characterData.currentPoints}</div>
+        <div className="aspects-high-concept-print print-output">{characterData.aspects.highConcept}</div>
+        <div className="aspects-trouble-print print-output">{characterData.aspects.trouble}</div>
+        <div className="aspects-aspect1-print print-output">{characterData.aspects.aspect1}</div>
+        <div className="aspects-aspect2-print print-output">{characterData.aspects.aspect2}</div>
+        <div className="aspects-aspect3-print print-output">{characterData.aspects.aspect3}</div>
+
+        {approaches.map(approach => <div
+            className={`approaches-${approach}-print print-output`}>{characterData.approaches[approach]}</div>)}
+
+        <div className="extras-print print-output">{characterData.extras}</div>
+        <div className="stunts-print print-output">{characterData.stunts}</div>
+        <div className="stress1-print print-output">{characterData.stress[0]}</div>
+        <div className="stress2-print print-output">{characterData.stress[1]}</div>
+        <div className="stress3-print print-output">{characterData.stress[2]}</div>
+        <div className="consequences-mild2-print print-output">{characterData.consequences.mild2}</div>
+        <div className="consequences-moderate4-print print-output">{characterData.consequences.moderate4}</div>
+        <div className="consequences-severe6-print print-output">{characterData.consequences.severe6}</div>
+    </div>
+
+
 }

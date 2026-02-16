@@ -1,9 +1,13 @@
 #root {
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+
 }
 
+.FAE-print {
+    display: none;
+}
 .main-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -14,3 +18,168 @@
     flex-direction: column;
     gap: 1px;
 }
+
+
+@media print {
+
+    .main-container {
+        display: none;
+
+    }
+
+    #root {
+        margin: 0 auto;
+        padding: 0;
+        text-align: center;
+    }
+
+    @page {
+        margin: 0 0 0 0;
+    }
+
+    .FAE-print {
+        display: block;
+        background-image: url("fae-print-friendly.jpg");
+        background-size: contain;
+        width: 210mm;
+        height: 297mm;
+        line-height: 17px;
+        text-align: start;
+        /* make it prettier for printing */
+        text-wrap: pretty;
+
+    }
+
+    .print-output {
+        white-space: nowrap;
+        position: absolute;
+        overflow: hidden;
+    }
+
+    .name-print {
+        top: 31mm;
+        left: 16.5mm;
+        width: 67mm;
+    }
+
+    .description-print {
+        top: 42mm;
+        left: 16.5mm;
+        height: 19mm;
+        width: 102mm;
+        white-space: normal;
+
+    }
+
+    .aspects-high-concept-print {
+
+        left: 16.5mm;
+        top: 79mm;
+        font-size: 1.1em;
+        width: 90mm;
+        height: 6mm
+    }
+
+
+    .aspects-trouble-print {
+        left: 16.5mm;
+        top: 90mm;
+
+        font-size: 1.1em;
+        width: 90mm;
+        height: 6mm
+    }
+
+    .aspects-aspect1-print {
+        left: 16.5mm;
+        top: 101mm;
+
+        font-size: 1.1em;
+        width: 90mm;
+        height: 6mm
+    }
+
+    .aspects-aspect2-print {
+        left: 16.5mm;
+        top: 113mm;
+
+        font-size: 1.1em;
+        width: 90mm;
+        height: 6mm
+    }
+
+    .aspects-aspect3-print {
+        left: 16.5mm;
+        top: 124.5mm;
+
+        font-size: 1.1em;
+        width: 90mm;
+        height: 6mm
+    }
+
+    .approaches-careful-print {
+        left: 161.5mm;
+        top: 78mm;
+        font-weight: bolder;
+        font-size: 1.2em;
+    }
+
+    .approaches-clever-print {
+        left: 161.5mm;
+        top: 87mm;
+        font-weight: bolder;
+        font-size: 1.2em;
+
+    }
+
+    .approaches-flashy-print {
+        left: 161.5mm;
+        top: 96.8mm;
+        font-weight: bolder;
+        font-size: 1.2em;
+
+    }
+
+    .approaches-forceful-print {
+        left: 161.5mm;
+        top: 106.3mm;
+        font-weight: bolder;
+        font-size: 1.2em;
+
+    }
+
+    .approaches-quick-print {
+        left: 161.5mm;
+        top: 116mm;
+        font-weight: bolder;
+        font-size: 1.2em;
+
+    }
+
+    .approaches-sneaky-print {
+        left: 161.5mm;
+        top: 125.6mm;
+        font-weight: bolder;
+        font-size: 1.2em;
+
+    }
+
+    .stunts-print {
+        white-space: pre-wrap;
+        left: 16.5mm;
+        top: 146.5mm;
+        width: 160mm;
+        height: 90mm;
+    }
+
+    .pronouns-print {
+        left: 88mm;
+        top: 31mm;
+        width: 30mm;
+    }
+
+}
+
+/*TODO stunt output and pronouns*/
+
+/* TODO map the output elements onto the character sheet print*/
