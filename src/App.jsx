@@ -2,7 +2,6 @@ import {useState} from 'react'
 import './App.css'
 
 function App() {
-    // TODO убрать extras?
     const [characterData, setCharacterData] = useState({
         name: 'Misha',
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur consequatur dolorem doloribus, eius hic mollitia quasi! Aliquam amet consectetur eius eos id incidunt nesciunt pariatur quas repellendus, vero voluptatem voluptatibus!',
@@ -46,7 +45,7 @@ function App() {
             ' pre-wrap     <PrintableSheet characterData={characterData}/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores pariatur soluta ullam! Commodi eligendi exercitationem fugit in iure? Ex fugiat iusto laborum nostrum officiis praesentium quod reprehenderit ullam voluptatem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut corporis cupiditate dolorem ducimus eius fugit, id illum ipsum iste laborum, minus molestiae nesciunt nihil praesentium quis recusandae totam!</>\n' +
             ' pre-wrap     <PrintableSheet characterData={characterData}/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores pariatur soluta ullam! Commodi eligendi exercitationem fugit in iure? Ex fugiat iusto laborum nostrum officiis praesentium quod reprehenderit ullam voluptatem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut corporis cupiditate dolorem ducimus eius fugit, id illum ipsum iste laborum, minus molestiae nesciunt nihil praesentium quis recusandae totam!</>\n' +
             'pre-wrap     <PrintableSheet characterData={characterData}/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores pariatur soluta ullam! Commodi eligendi exercitationem fugit in iure? Ex fugiat iusto laborum nostrum officiis praesentium quod reprehenderit ullam voluptatem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut corporis cupiditate dolorem ducimus eius fugit, id illum ipsum iste laborum, minus molestiae nesciunt nihil praesentium quis recusandae totam!</>\n',
-        stress: [true, false, false],
+        stress: [true, true, true],
 
         consequences: {
             mild2: 'Подбит',
@@ -212,18 +211,22 @@ function ConsequenceInputBox({onChange}) {
 }
 
 
-//  TODO сделать вывод инпута
-// TODO how to make printing output for A4 page correctly?
+// TODO page preview? Or even skip it altogether
 function DisplayPanel({characterData}) {
     return (<div>Full json {JSON.stringify(characterData)}</div>
     )
 }
 
 function PrintableSheet({characterData}) {
-//TODO character output in the png boxes
-
-
     let approaches = Object.keys(characterData.approaches)
+
+    function checkMarkStress(characterData) {
+        return [
+            <div className="stress1-print print-output">{characterData.stress[0] ? '✔' : ''}</div>,
+            <div className="stress2-print print-output">{characterData.stress[1] ? '✔' : ''}</div>,
+            <div className="stress3-print print-output">{characterData.stress[2] ? '✔' : ''}</div>
+        ]
+    }
 
     return <div className={"FAE-print"}>
         <div className={"name-print print-output"}> {characterData.name} </div>
@@ -240,11 +243,8 @@ function PrintableSheet({characterData}) {
         {approaches.map(approach => <div
             className={`approaches-${approach}-print print-output`}>{characterData.approaches[approach]}</div>)}
 
-        <div className="extras-print print-output">{characterData.extras}</div>
         <div className="stunts-print print-output">{characterData.stunts}</div>
-        <div className="stress1-print print-output">{characterData.stress[0]}</div>
-        <div className="stress2-print print-output">{characterData.stress[1]}</div>
-        <div className="stress3-print print-output">{characterData.stress[2]}</div>
+        {checkMarkStress(characterData)}
         <div className="consequences-mild2-print print-output">{characterData.consequences.mild2}</div>
         <div className="consequences-moderate4-print print-output">{characterData.consequences.moderate4}</div>
         <div className="consequences-severe6-print print-output">{characterData.consequences.severe6}</div>
