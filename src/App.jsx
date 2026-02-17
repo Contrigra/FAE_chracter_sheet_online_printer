@@ -1,6 +1,12 @@
 import {useState} from 'react'
 import './App.css'
 
+//  TODO 1. print button as casual users would know about the CTRL + P shortcut
+//       2. Live preview. Can I use the printable page as preview?
+//       Maybe I can just copy paste scale down everything there
+//       3. Maybe just do an input panel only, which would look good and that's it?
+//       Preview could be kinda redundant, as there's browser print preview window
+
 function App() {
     const [characterData, setCharacterData] = useState({
         name: 'Misha',
@@ -77,7 +83,6 @@ function App() {
 
         setCharacterData(newCharacterData);
     }
-
 
     return (
         <>
