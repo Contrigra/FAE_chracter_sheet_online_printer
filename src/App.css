@@ -5,6 +5,11 @@
 
 }
 
+
+.input-panel {
+    max-height: 800px;
+}
+
 .FAE-print {
     display: none;
 }
@@ -20,12 +25,34 @@
     gap: 1px;
 }
 
+.sheet-preview {
+    display: none;
+}
+
+.display-panel .sheet-preview {
+    display: block;
+}
+
+.wrapper {
+    width: calc(210mm * 0.85); /* 105mm — matches visual width */
+    height: calc(297mm * 0.85); /* 148.5mm — matches visual height */
+    overflow: hidden;
+}
 
 @media print {
 
     .main-container {
         display: none;
 
+    }
+
+    .wrapper {
+        width: 210mm; /* 105mm — matches visual width */
+        height: 297mm;
+    }
+
+    .sheet-preview {
+        display: block;
     }
 
     #root {
@@ -52,195 +79,222 @@
     }
 
     .print-output {
-        white-space: nowrap;
         position: absolute;
         overflow: hidden;
-    }
 
-    .name-print {
-        top: 31mm;
-        left: 16.5mm;
-        width: 67mm;
-    }
-
-    .description-print {
-        top: 42mm;
-        left: 16.5mm;
-        height: 19mm;
-        width: 102mm;
-        white-space: normal;
-
-    }
-
-    .aspects-high-concept-print {
-
-        left: 16.5mm;
-        top: 79mm;
-        font-size: 1.1em;
-        width: 90mm;
-        height: 6mm
-    }
-
-
-    .aspects-trouble-print {
-        left: 16.5mm;
-        top: 90mm;
-
-        font-size: 1.1em;
-        width: 90mm;
-        height: 6mm
-    }
-
-    .aspects-aspect1-print {
-        left: 16.5mm;
-        top: 101mm;
-
-        font-size: 1.1em;
-        width: 90mm;
-        height: 6mm
-    }
-
-    .aspects-aspect2-print {
-        left: 16.5mm;
-        top: 113mm;
-
-        font-size: 1.1em;
-        width: 90mm;
-        height: 6mm
-    }
-
-    .aspects-aspect3-print {
-        left: 16.5mm;
-        top: 124.5mm;
-
-        font-size: 1.1em;
-        width: 90mm;
-        height: 6mm
-    }
-
-    .approaches-careful-print {
-        left: 161.5mm;
-        top: 78mm;
-        font-weight: bolder;
-        font-size: 1.2em;
-    }
-
-    .approaches-clever-print {
-        left: 161.5mm;
-        top: 87mm;
-        font-weight: bolder;
-        font-size: 1.2em;
-
-    }
-
-    .approaches-flashy-print {
-        left: 161.5mm;
-        top: 96.8mm;
-        font-weight: bolder;
-        font-size: 1.2em;
-
-    }
-
-    .approaches-forceful-print {
-        left: 161.5mm;
-        top: 106.3mm;
-        font-weight: bolder;
-        font-size: 1.2em;
-
-    }
-
-    .approaches-quick-print {
-        left: 161.5mm;
-        top: 116mm;
-        font-weight: bolder;
-        font-size: 1.2em;
-
-    }
-
-    .approaches-sneaky-print {
-        left: 161.5mm;
-        top: 125.6mm;
-        font-weight: bolder;
-        font-size: 1.2em;
-
-    }
-
-    .stunts-print {
-        white-space: pre-wrap;
-        left: 16.5mm;
-        top: 146.5mm;
-        width: 160mm;
-        height: 90mm;
-    }
-
-    .pronouns-print {
-        left: 88mm;
-        top: 31mm;
-        width: 30mm;
     }
 
     .refresh-print {
         overflow: visible;
-        top: 51mm;
-        left: 133.5mm;
-        font-weight: 1000;
-        font-size: 2.5em;
-
-    }
-
-    .current-points-print {
-        overflow: visible;
-        top: 51mm;
-        left: 162.5mm;
-        font-weight: 1000;
-        font-size: 2.5em;
-
-    }
-
-    .consequences-mild2-print {
-        top: 254mm;
-        left: 94mm;
-        width: 84.5mm;
-    }
-
-    .consequences-moderate4-print {
-        top: 266mm;
-        left: 94mm;
-        width: 84.5mm;
-    }
-
-    .consequences-severe6-print {
-        top: 277mm;
-        left: 94mm;
-        width: 84.5mm;
-    }
-
-    .stress1-print {
-        overflow: visible;
-        top: 257mm;
-        left: 17mm;
-        font-weight: bold;
-        font-size: 5em;
-    }
-
-    .stress2-print {
-        overflow: visible;
-        top: 257mm;
-        left: 39.3mm;
-        font-weight: bold;
-        font-size: 5em;
-    }
-
-    .stress3-print {
-        overflow: visible;
-        top: 257mm;
-        left: 62.6mm;
-        font-weight: bold;
-        font-size: 5em;
     }
 
 
 }
+
+.display-panel .FAE-print {
+    display: block;
+    background-image: url("fae-print-friendly.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    line-height: 17px;
+    text-align: start;
+    text-wrap: pretty;
+    transform: scale(0.85);
+    transform-origin: top left;
+    overflow: hidden;
+}
+
+.print-output {
+    white-space: nowrap;
+    position: absolute;
+    overflow: hidden;
+}
+
+.name-print {
+    top: 31mm;
+    left: 16.5mm;
+    width: 67mm;
+}
+
+.description-print {
+    top: 42mm;
+    left: 16.5mm;
+    height: 19mm;
+    width: 102mm;
+    white-space: normal;
+
+}
+
+.aspects-high-concept-print {
+
+    left: 16.5mm;
+    top: 79mm;
+    font-size: 1.1em;
+    width: 90mm;
+    height: 6mm
+}
+
+
+.aspects-trouble-print {
+    left: 16.5mm;
+    top: 90mm;
+
+    font-size: 1.1em;
+    width: 90mm;
+    height: 6mm
+}
+
+.aspects-aspect1-print {
+    left: 16.5mm;
+    top: 101mm;
+
+    font-size: 1.1em;
+    width: 90mm;
+    height: 6mm
+}
+
+.aspects-aspect2-print {
+    left: 16.5mm;
+    top: 113mm;
+
+    font-size: 1.1em;
+    width: 90mm;
+    height: 6mm
+}
+
+.aspects-aspect3-print {
+    left: 16.5mm;
+    top: 124.5mm;
+
+    font-size: 1.1em;
+    width: 90mm;
+    height: 6mm
+}
+
+.approaches-careful-print {
+    left: 161.5mm;
+    top: 78mm;
+    font-weight: bolder;
+    font-size: 1.2em;
+}
+
+.approaches-clever-print {
+    left: 161.5mm;
+    top: 87mm;
+    font-weight: bolder;
+    font-size: 1.2em;
+
+}
+
+.approaches-flashy-print {
+    left: 161.5mm;
+    top: 96.8mm;
+    font-weight: bolder;
+    font-size: 1.2em;
+
+}
+
+.approaches-forceful-print {
+    left: 161.5mm;
+    top: 106.3mm;
+    font-weight: bolder;
+    font-size: 1.2em;
+
+}
+
+.approaches-quick-print {
+    left: 161.5mm;
+    top: 116mm;
+    font-weight: bolder;
+    font-size: 1.2em;
+
+}
+
+.approaches-sneaky-print {
+    left: 161.5mm;
+    top: 125.6mm;
+    font-weight: bolder;
+    font-size: 1.2em;
+
+}
+
+.stunts-print {
+    white-space: pre-wrap;
+    left: 16.5mm;
+    top: 146.5mm;
+    width: 160mm;
+    height: 90mm;
+}
+
+.pronouns-print {
+    left: 88mm;
+    top: 31mm;
+    width: 30mm;
+}
+
+.refresh-print {
+    overflow: visible;
+    top: 51mm;
+    left: 133.5mm;
+    font-weight: 1000;
+    font-size: 2.5em;
+
+}
+
+.current-points-print {
+    overflow: visible;
+    top: 51mm;
+    left: 162.5mm;
+    font-weight: 1000;
+    font-size: 2.5em;
+
+}
+
+.consequences-mild2-print {
+    top: 254mm;
+    left: 94mm;
+    width: 84.5mm;
+}
+
+.consequences-moderate4-print {
+    top: 266mm;
+    left: 94mm;
+    width: 84.5mm;
+}
+
+.consequences-severe6-print {
+    top: 277mm;
+    left: 94mm;
+    width: 84.5mm;
+}
+
+.stress1-print {
+    overflow: visible;
+    top: 257mm;
+    left: 17mm;
+    font-weight: bold;
+    font-size: 5em;
+}
+
+.stress2-print {
+    overflow: visible;
+    top: 257mm;
+    left: 39.3mm;
+    font-weight: bold;
+    font-size: 5em;
+}
+
+.stress3-print {
+    overflow: visible;
+    top: 257mm;
+    left: 62.6mm;
+    font-weight: bold;
+    font-size: 5em;
+}
+
 
 /*TODO stunt output and pronouns*/
 

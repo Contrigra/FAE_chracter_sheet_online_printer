@@ -93,11 +93,11 @@ function App() {
 
                 </div>
                 <div className={'display-panel'}>
-                    <h1>Display Panel</h1>
                     <DisplayPanel characterData={characterData}/>
                 </div>
             </div>
-            <PrintableSheet characterData={characterData}/></>
+            <DisplayPanel characterData={characterData}/>
+            </>
     )
 }
 
@@ -217,10 +217,13 @@ function ConsequenceInputBox({onChange}) {
 
 
 // TODO page preview? Or even skip it altogether
-function DisplayPanel({characterData}) {
-    return (<div>Full json {JSON.stringify(characterData)}</div>
-    )
-}
+ function DisplayPanel({characterData}) {
+        return (
+            <div className="sheet-preview">
+                <PrintableSheet characterData={characterData}/>
+            </div>
+        )
+    }
 
 function PrintableSheet({characterData}) {
     let approaches = Object.keys(characterData.approaches)
@@ -233,26 +236,28 @@ function PrintableSheet({characterData}) {
         ]
     }
 
-    return <div className={"FAE-print"}>
-        <div className={"name-print print-output"}> {characterData.name} </div>
-        <div className={"description-print print-output"}> {characterData.description}</div>
-        <div className={"pronouns-print print-output"}> {characterData.gender}</div>
-        <div className="refresh-print print-output">{characterData.refresh}</div>
-        <div className="current-points-print print-output">{characterData.currentPoints}</div>
-        <div className="aspects-high-concept-print print-output">{characterData.aspects.highConcept}</div>
-        <div className="aspects-trouble-print print-output">{characterData.aspects.trouble}</div>
-        <div className="aspects-aspect1-print print-output">{characterData.aspects.aspect1}</div>
-        <div className="aspects-aspect2-print print-output">{characterData.aspects.aspect2}</div>
-        <div className="aspects-aspect3-print print-output">{characterData.aspects.aspect3}</div>
+    return <div className={'wrapper'}>
+        <div className={"FAE-print"}>
+            <div className={"name-print print-output"}> {characterData.name} </div>
+            <div className={"description-print print-output"}> {characterData.description}</div>
+            <div className={"pronouns-print print-output"}> {characterData.gender}</div>
+            <div className="refresh-print print-output">{characterData.refresh}</div>
+            <div className="current-points-print print-output">{characterData.currentPoints}</div>
+            <div className="aspects-high-concept-print print-output">{characterData.aspects.highConcept}</div>
+            <div className="aspects-trouble-print print-output">{characterData.aspects.trouble}</div>
+            <div className="aspects-aspect1-print print-output">{characterData.aspects.aspect1}</div>
+            <div className="aspects-aspect2-print print-output">{characterData.aspects.aspect2}</div>
+            <div className="aspects-aspect3-print print-output">{characterData.aspects.aspect3}</div>
 
-        {approaches.map(approach => <div
-            className={`approaches-${approach}-print print-output`}>{characterData.approaches[approach]}</div>)}
+            {approaches.map(approach => <div
+                className={`approaches-${approach}-print print-output`}>{characterData.approaches[approach]}</div>)}
 
-        <div className="stunts-print print-output">{characterData.stunts}</div>
-        {checkMarkStress(characterData)}
-        <div className="consequences-mild2-print print-output">{characterData.consequences.mild2}</div>
-        <div className="consequences-moderate4-print print-output">{characterData.consequences.moderate4}</div>
-        <div className="consequences-severe6-print print-output">{characterData.consequences.severe6}</div>
+            <div className="stunts-print print-output">{characterData.stunts}</div>
+            {checkMarkStress(characterData)}
+            <div className="consequences-mild2-print print-output">{characterData.consequences.mild2}</div>
+            <div className="consequences-moderate4-print print-output">{characterData.consequences.moderate4}</div>
+            <div className="consequences-severe6-print print-output">{characterData.consequences.severe6}</div>
+        </div>
     </div>
 
 
