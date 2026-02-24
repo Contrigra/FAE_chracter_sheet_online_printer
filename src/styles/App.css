@@ -1,6 +1,6 @@
 #root {
     margin: 0 auto;
-    padding: 2rem;
+    padding: 0 20%;
     text-align: center;
 
 }
@@ -67,7 +67,7 @@
 
     .FAE-print {
         display: block;
-        background-image: url("fae-print-friendly.jpg");
+        background-image: url("../fae-print-friendly.jpg");
         background-size: contain;
         width: 210mm;
         height: 297mm;
@@ -93,7 +93,7 @@
 
 .display-panel .FAE-print {
     display: block;
-    background-image: url("fae-print-friendly.jpg");
+    background-image: url("../fae-print-friendly.jpg");
     background-size: contain;
     background-repeat: no-repeat;
     position: relative;
@@ -119,6 +119,7 @@
     width: 67mm;
 }
 
+/* somehow it does not wrap lines*/
 .description-print {
     top: 42mm;
     left: 16.5mm;
@@ -295,7 +296,5 @@
     font-size: 5em;
 }
 
-
-/*TODO stunt output and pronouns*/
-
-/* TODO map the output elements onto the character sheet print*/
+.sheet-preview {
+}

@@ -1,0 +1,77 @@
+input {
+    margin: 1px;
+}
+
+.input-panel {
+    min-width: max-content;
+    margin-bottom: 0px;
+
+
+}
+
+.input-panel h1 {
+    margin-bottom: 4px;
+    margin-top: 32px;
+}
+
+.id-input-box {
+    width: 700px;
+}
+
+.input-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    align-self: start;
+}
+
+.input-panel form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.input-panel form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.aspects-input-box {
+    width: 250px;
+}
+
+textarea {
+    min-width: 500px;
+    max-width: 670px;
+    padding: 0px;
+}
+
+.approaches-input-box label {
+    display: grid;
+    align-content: start;
+    justify-content: start;
+    text-align: start;
+
+}
+
+.stress-input-box .checkbox-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+
+input[type=checkbox] {
+    margin: 4px;
+    width: 20px;
+    height: 20px;
+}
+
+#root > div.main-container > div.input-panel > form > div.stress-input-box > div.checkbox-wrapper > input[type=checkbox]:nth-child(1) {
+    margin-left: 0px;
+}
+
+.consequence-input-box label input {
+    margin-left: 4px;
+    width: 250px;
+}
+

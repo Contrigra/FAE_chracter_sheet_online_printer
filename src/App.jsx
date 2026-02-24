@@ -1,33 +1,31 @@
 import {useState} from 'react'
-import './App.css'
+import './styles/App.css'
 
 //  TODO 1. print button as casual users would know about the CTRL + P shortcut
-//       2. Live preview. Can I use the printable page as preview?
-//       Maybe I can just copy paste scale down everything there
-//       3. Maybe just do an input panel only, which would look good and that's it?
-//       Preview could be kinda redundant, as there's browser print preview window
+
+
 
 function App() {
     const [characterData, setCharacterData] = useState({
-        name: 'Misha',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur consequatur dolorem doloribus, eius hic mollitia quasi! Aliquam amet consectetur eius eos id incidunt nesciunt pariatur quas repellendus, vero voluptatem voluptatibus!',
-        gender: 'Male',
+        name: 'Monokuma',
+        description: 'The greatest entertainer and villain of all time',
+        gender: 'Robot',
         refresh: '3',
         currentPoints: '3',
         aspects: {
-            highConcept: 'Superhero',
-            trouble: 'Too smart',
-            aspect1: 'Anya wife',
-            aspect2: 'Flat owner',
-            aspect3: 'Greatest Cook'
+            highConcept: 'Trickster mastermind',
+            trouble: 'Overconfident ',
+            aspect1: 'Robotic Body',
+            aspect2: 'Always has a lair',
+            aspect3: ''
         },
         approaches: {
-            careful: '3',      // +5
-            clever: '5',       // +4
-            flashy: '2',        // +3
+            careful: '2',      // +5
+            clever: '4',       // +4
+            flashy: '5',        // +3
             forceful: '1',        // +2
             quick: '1',      // +1
-            sneaky: '1'
+            sneaky: '3'
         },
         stunts: '        <>\n' +
             '            <div className={\'main-container\'}>\n' +
@@ -54,9 +52,9 @@ function App() {
         stress: [true, true, true],
 
         consequences: {
-            mild2: 'Подбит',
-            moderate4: 'Голоден',
-            severe6: 'Болит спина'
+            mild2: 'Drowsy',
+            moderate4: 'Extremely bored',
+            severe6: ''
         }
     });
 
@@ -190,9 +188,9 @@ function StuntsInputBox({onChange}) {
 function StressInputBox({onChange}) {
     return <div className={"stress-input-box"}>
         <div className={"stress-input-box-header input-header"}>Stress</div>
-        <input type="checkbox" onChange={onChange} data-stress='stress1' name="stress1"/>
-        <input type="checkbox" onChange={onChange} data-stress='stress2' name="stress2"/>
-        <input type="checkbox" onChange={onChange} data-stress='stress3' name="stress3"/>
+        <div className={'checkbox-wrapper'}><input type="checkbox" onChange={onChange} data-stress='stress1' name="stress1"/>
+            <input type="checkbox" onChange={onChange} data-stress='stress2' name="stress2"/>
+            <input type="checkbox" onChange={onChange} data-stress='stress3' name="stress3"/></div>
     </div>
 }
 
@@ -216,7 +214,6 @@ function ConsequenceInputBox({onChange}) {
 }
 
 
-// TODO page preview? Or even skip it altogether
  function DisplayPanel({characterData}) {
         return (
             <div className="sheet-preview">
