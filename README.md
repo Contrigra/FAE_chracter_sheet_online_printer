@@ -1,6 +1,6 @@
 
 
-# FAE Character Sheet (Fill + Print) — React Learning Project
+# FAE Character Sheet (Fill + Print)
 
 A small React + Vite project I’m building to learn React while making a practical tool: **a fillable Fate Accelerated Edition (FAE) character sheet that can be printed**.
 
