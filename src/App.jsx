@@ -1,10 +1,6 @@
 import {useState} from 'react'
 import './styles/App.css'
 
-//  TODO 1. print button as casual users would know about the CTRL + P shortcut
-
-
-
 function App() {
     const [characterData, setCharacterData] = useState({
         name: 'Monokuma',
@@ -49,7 +45,7 @@ function App() {
             ' pre-wrap     <PrintableSheet characterData={characterData}/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores pariatur soluta ullam! Commodi eligendi exercitationem fugit in iure? Ex fugiat iusto laborum nostrum officiis praesentium quod reprehenderit ullam voluptatem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut corporis cupiditate dolorem ducimus eius fugit, id illum ipsum iste laborum, minus molestiae nesciunt nihil praesentium quis recusandae totam!</>\n' +
             ' pre-wrap     <PrintableSheet characterData={characterData}/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores pariatur soluta ullam! Commodi eligendi exercitationem fugit in iure? Ex fugiat iusto laborum nostrum officiis praesentium quod reprehenderit ullam voluptatem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut corporis cupiditate dolorem ducimus eius fugit, id illum ipsum iste laborum, minus molestiae nesciunt nihil praesentium quis recusandae totam!</>\n' +
             'pre-wrap     <PrintableSheet characterData={characterData}/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores pariatur soluta ullam! Commodi eligendi exercitationem fugit in iure? Ex fugiat iusto laborum nostrum officiis praesentium quod reprehenderit ullam voluptatem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut corporis cupiditate dolorem ducimus eius fugit, id illum ipsum iste laborum, minus molestiae nesciunt nihil praesentium quis recusandae totam!</>\n',
-        stress: [true, true, true],
+        stress: [false, false, false],
 
         consequences: {
             mild2: 'Drowsy',
@@ -95,11 +91,12 @@ function App() {
                 </div>
             </div>
             <DisplayPanel characterData={characterData}/>
-            </>
+        </>
     )
 }
 
 export default App
+
 
 function InputPanel({onChange}) {
 
@@ -111,7 +108,10 @@ function InputPanel({onChange}) {
                 <ApproachesInputBox onChange={onChange}/>
                 <StuntsInputBox onChange={onChange}/>
                 <StressInputBox onChange={onChange}/>
-                <ConsequenceInputBox onChange={onChange}/>
+                <div className={"consequence-print-button-wrapper"}>
+                    <ConsequenceInputBox onChange={onChange}/>
+                    <PrintButton/>
+                </div>
             </form>
 
         </>
@@ -155,7 +155,7 @@ function ApproachesInputBox({onChange}) {
         <div className={"approaches-input-box"}>
             <div className={"approaches-input-box-header input-header"}>Approaches</div>
             <label>Careful
-                <input type="text" onChange={onChange} name="careful" data-approach="careful"/>
+                <input type="text" he onChange={onChange} name="careful" data-approach="careful"/>
             </label>
             <label>Clever
                 <input type="text" onChange={onChange} name="clever" data-approach="clever"/>
@@ -188,12 +188,12 @@ function StuntsInputBox({onChange}) {
 function StressInputBox({onChange}) {
     return <div className={"stress-input-box"}>
         <div className={"stress-input-box-header input-header"}>Stress</div>
-        <div className={'checkbox-wrapper'}><input type="checkbox" onChange={onChange} data-stress='stress1' name="stress1"/>
+        <div className={'checkbox-wrapper'}><input type="checkbox" onChange={onChange} data-stress='stress1'
+                                                   name="stress1"/>
             <input type="checkbox" onChange={onChange} data-stress='stress2' name="stress2"/>
             <input type="checkbox" onChange={onChange} data-stress='stress3' name="stress3"/></div>
     </div>
 }
-
 
 function ConsequenceInputBox({onChange}) {
     return <div className={"consequence-input-box"}>
@@ -213,14 +213,13 @@ function ConsequenceInputBox({onChange}) {
     </div>
 }
 
-
- function DisplayPanel({characterData}) {
-        return (
-            <div className="sheet-preview">
-                <PrintableSheet characterData={characterData}/>
-            </div>
-        )
-    }
+function DisplayPanel({characterData}) {
+    return (
+        <div className="sheet-preview">
+            <PrintableSheet characterData={characterData}/>
+        </div>
+    )
+}
 
 function PrintableSheet({characterData}) {
     let approaches = Object.keys(characterData.approaches)
@@ -256,6 +255,8 @@ function PrintableSheet({characterData}) {
             <div className="consequences-severe6-print print-output">{characterData.consequences.severe6}</div>
         </div>
     </div>
+}
 
-
+function PrintButton() {
+    return <button onClick={() => window.print()}>Print</button>;
 }
