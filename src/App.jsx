@@ -23,28 +23,9 @@ function App() {
             quick: '1',      // +1
             sneaky: '3'
         },
-        stunts: '        <>\n' +
-            '            <div className={\'main-container\'}>\n' +
-            '                <div className={\'input-panel\'}>\n' +
-            '                    <h1>Input Panel</h1>\n' +
-            '                    <InputPanel onChange={handleChange}/>\n' +
-            '\n' +
-            '                </div>\n' +
-            '                <div className={\'display-panel\'}>\n' +
-            '                    <h1>Display Panel</h1>\n' +
-            '                    <DisplayPanel characterData={characterData}/>\n' +
-            '                </div>\n' +
-            '            </div>\n' +
-            '       ## Me\n' +
-            'Why does my stunt print output does not make it print new lines, instead all text is squished? I have \\n special character for a new line\n' +
-            '\n' +
-            '## AI Assistant\n' +
-            'In HTML (and therefore in React), newline characters (\\n) inside a normal element like <div> are treated as whitespace and collapsed. So your "line1\\nline2" renders like "line1 line2".\n' +
-            'To make the browser render those newlines, you have two common options:\n' +
-            '  pre-wrap     <PrintableSheet characterData={characterData}/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores pariatur soluta ullam! Commodi eligendi exercitationem fugit in iure? Ex fugiat iusto laborum nostrum officiis praesentium quod reprehenderit ullam voluptatem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut corporis cupiditate dolorem ducimus eius fugit, id illum ipsum iste laborum, minus molestiae nesciunt nihil praesentium quis recusandae totam!</>\n' +
-            ' pre-wrap     <PrintableSheet characterData={characterData}/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores pariatur soluta ullam! Commodi eligendi exercitationem fugit in iure? Ex fugiat iusto laborum nostrum officiis praesentium quod reprehenderit ullam voluptatem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut corporis cupiditate dolorem ducimus eius fugit, id illum ipsum iste laborum, minus molestiae nesciunt nihil praesentium quis recusandae totam!</>\n' +
-            ' pre-wrap     <PrintableSheet characterData={characterData}/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores pariatur soluta ullam! Commodi eligendi exercitationem fugit in iure? Ex fugiat iusto laborum nostrum officiis praesentium quod reprehenderit ullam voluptatem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut corporis cupiditate dolorem ducimus eius fugit, id illum ipsum iste laborum, minus molestiae nesciunt nihil praesentium quis recusandae totam!</>\n' +
-            'pre-wrap     <PrintableSheet characterData={characterData}/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores pariatur soluta ullam! Commodi eligendi exercitationem fugit in iure? Ex fugiat iusto laborum nostrum officiis praesentium quod reprehenderit ullam voluptatem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aut corporis cupiditate dolorem ducimus eius fugit, id illum ipsum iste laborum, minus molestiae nesciunt nihil praesentium quis recusandae totam!</>\n',
+        stunts: '1. Punishment Time - Because I am an expert at executing people, I get +2 to Flashy when dramatically revealing deadly traps. \n\n' +
+            '2. Back from the Dead - Because I am a robot with backup bodies, once per session I can return after being taken out.\n \n' +
+            '3. Ultimate Despair - When I Cleverly manipulate others towards despair, I get +2 to create advantages related to breaking their spirit',
         stress: [false, false, false],
 
         consequences: {
