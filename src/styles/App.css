@@ -5,6 +5,10 @@
 
 }
 
+/* accidentally designed everything to look good for zoom 0.9, now we have this abomination */
+body {
+    zoom: 0.9;
+}
 
 .input-panel {
     max-height: 800px;
@@ -40,6 +44,11 @@
 }
 
 @media print {
+
+    /* print should look good */
+    body {
+        zoom: 1;
+    }
 
     .main-container {
         display: none;
