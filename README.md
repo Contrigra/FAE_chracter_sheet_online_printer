@@ -17,5 +17,4 @@ A small React + Vite project I’m building to learn React while making a practi
 - Vite
 - Plain CSS (including `@media print` for print layout)
 
-## Getting started
 
